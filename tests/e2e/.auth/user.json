@@ -1,0 +1,18 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "http://localhost:3000",
+      "localStorage": [
+        {
+          "name": "test-env",
+          "value": "{\"TEST_USER_ID\":\"test-user-playwright\",\"TEST_CLIENT_ID\":\"b349f6cc-02af-4b66-a563-cc22a5f17c01\",\"TEST_PROJECT_ID\":\"ce915a07-a57a-4a20-85e3-6d43ad2548de\"}"
+        },
+        {
+          "name": "test-auth",
+          "value": "{\"userId\":\"test-user-playwright\",\"email\":\"playwright@test.emineon.com\",\"role\":\"ADMIN\"}"
+        }
+      ]
+    }
+  ]
+}

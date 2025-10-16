@@ -1,0 +1,53 @@
+SARAH JOHNSON
+Senior Software Engineer
+Email: sarah.johnson@email.com
+Phone: +1 (555) 123-4567
+Location: San Francisco, CA
+
+PROFESSIONAL SUMMARY
+Experienced software engineer with 8+ years of expertise in full-stack development, specializing in React, Node.js, and cloud technologies. Proven track record of leading development teams and delivering scalable web applications.
+
+TECHNICAL SKILLS
+• Programming Languages: JavaScript, TypeScript, Python, Java
+• Frontend: React, Vue.js, Angular, HTML5, CSS3, SASS
+• Backend: Node.js, Express.js, Django, Spring Boot
+• Databases: PostgreSQL, MongoDB, Redis
+• Cloud: AWS, Azure, Docker, Kubernetes
+• Tools: Git, Jenkins, JIRA, Figma
+
+PROFESSIONAL EXPERIENCE
+
+Senior Software Engineer | TechCorp Inc. | 2020-01 - Present
+• Led a team of 5 developers in building a customer-facing web application serving 100K+ users
+• Implemented microservices architecture using Node.js and Docker, improving system scalability by 300%
+• Designed and developed RESTful APIs and GraphQL endpoints for mobile and web applications
+• Reduced application load time by 40% through code optimization and caching strategies
+• Mentored junior developers and conducted code reviews to maintain high code quality standards
+
+Software Engineer | StartupFlow | 2018-06 - 2019-12
+• Developed responsive web applications using React and Redux for state management
+• Built real-time features using WebSocket connections and Socket.io
+• Integrated third-party APIs including payment gateways (Stripe, PayPal) and social media platforms
+• Collaborated with UX/UI designers to implement pixel-perfect user interfaces
+• Participated in agile development processes and sprint planning sessions
+
+Junior Developer | WebSolutions Ltd | 2016-03 - 2018-05
+• Created dynamic websites using HTML5, CSS3, JavaScript, and jQuery
+• Developed WordPress themes and plugins for client projects
+• Performed website maintenance, bug fixes, and performance optimizations
+• Assisted in database design and implementation using MySQL
+• Gained experience in version control systems (Git) and deployment processes
+
+EDUCATION
+Master of Science in Computer Science | Stanford University | 2014-2016
+Bachelor of Science in Software Engineering | UC Berkeley | 2010-2014
+
+CERTIFICATIONS
+• AWS Certified Solutions Architect - Associate (2021)
+• React Professional Developer Certification (2020)
+• Node.js Certified Developer (2019)
+
+LANGUAGES
+• English (Native)
+• Spanish (Professional)
+• French (Conversational) 

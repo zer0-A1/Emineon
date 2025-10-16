@@ -1,0 +1,10 @@
+{
+  "crons": [
+    {
+      "path": "/api/algolia/outbox-sync",
+      "schedule": "*/1 * * * *"
+    }
+  ]
+}
+
+

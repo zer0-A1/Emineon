@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Emineon Email Composer</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #F8FAFC;
+            color: #0F172A;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0A2F5A 0%, #0891B2 100%);
+            color: white;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 24px;
+            height: 24px;
+        }
+
+        .header-title {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .status-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Main Content */
+        .container {
+            padding: 0;
+            max-height: calc(100vh - 64px);
+            overflow-y: auto;
+        }
+
+        .section {
+            background: white;
+            margin: 12px;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #E2E8F0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0A2F5A;
+        }
+
+        .section-icon {
+            width: 16px;
+            height: 16px;
+            color: #0891B2;
+        }
+
+        /* Template Categories */
+        .template-categories {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .category-btn {
+            padding: 8px 12px;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            background: white;
+            font-size: 11px;
+            font-weight: 500;
+            color: #64748B;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .category-btn.active {
+            background: #0A2F5A;
+            color: white;
+            border-color: #0A2F5A;
+        }
+
+        .category-btn:hover {
+            background: #F1F5F9;
+            border-color: #CBD5E1;
+        }
+
+        .category-btn.active:hover {
+            background: #0F172A;
+        }
+
+        /* Template Grid */
+        .template-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .template-card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .template-card:hover {
+            background: #F1F5F9;
+            border-color: #0891B2;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .template-card.selected {
+            background: #EFF6FF;
+            border-color: #0A2F5A;
+        }
+
+        .template-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0A2F5A;
+            margin-bottom: 4px;
+        }
+
+        .template-desc {
+            font-size: 10px;
+            color: #64748B;
+            line-height: 1.4;
+        }
+
+        .template-tags {
+            display: flex;
+            gap: 4px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+
+        .template-tag {
+            background: #E2E8F0;
+            color: #475569;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 500;
+        }
+
+        /* AI Writing Assistant */
+        .ai-writing {
+            background: linear-gradient(135deg, #FEF7FF 0%, #F3E8FF 100%);
+            border: 1px solid #A855F7;
+            margin: 12px;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .ai-icon {
+            width: 16px;
+            height: 16px;
+            color: #A855F7;
+        }
+
+        .ai-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #7C2D12;
+        }
+
+        .ai-prompt {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #D1D5DB;
+            border-radius: 6px;
+            font-size: 12px;
+            resize: none;
+            height: 50px;
+            margin-bottom: 8px;
+        }
+
+        .ai-controls {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .ai-btn {
+            padding: 4px 8px;
+            border: none;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .ai-btn.primary {
+            background: #A855F7;
+            color: white;
+        }
+
+        .ai-btn.secondary {
+            background: #E5E7EB;
+            color: #374151;
+        }
+
+        .ai-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: none;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .action-btn.primary {
+            background: #0A2F5A;
+            color: white;
+        }
+
+        .action-btn.secondary {
+            background: #0891B2;
+            color: white;
+        }
+
+        .action-btn.success {
+            background: #059669;
+            color: white;
+        }
+
+        .action-btn.warning {
+            background: #D97706;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .action-icon {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Signature Section */
+        .signature-preview {
+            background: #F1F5F9;
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 11px;
+            color: #374151;
+            line-height: 1.4;
+        }
+
+        .signature-name {
+            font-weight: 600;
+            color: #0A2F5A;
+            margin-bottom: 4px;
+        }
+
+        .signature-role {
+            color: #64748B;
+            margin-bottom: 8px;
+        }
+
+        .signature-contact {
+            font-size: 10px;
+            color: #64748B;
+        }
+
+        /* Context Bar */
+        .context-bar {
+            background: #FEF3C7;
+            border: 1px solid #F59E0B;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin: 12px;
+            font-size: 11px;
+            color: #92400E;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .context-icon {
+            width: 12px;
+            height: 12px;
+            color: #F59E0B;
+        }
+
+        /* Loading States */
+        .loading {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748B;
+            font-size: 11px;
+        }
+
+        .spinner {
+            width: 12px;
+            height: 12px;
+            border: 2px solid #E2E8F0;
+            border-top: 2px solid #0891B2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 320px) {
+            .template-categories {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                margin: 8px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <img src="https://res.cloudinary.com/emineon/image/upload/Emineon_logo_tree_white_lfwp8h" alt="Emineon" class="logo">
+            <span class="header-title">Email Composer</span>
+        </div>
+        <div class="status-badge">Connected</div>
+    </div>
+
+    <!-- Context Bar -->
+    <div class="context-bar">
+        <i data-lucide="info" class="context-icon"></i>
+        <span>Replying to: <strong id="replyContext">Original Email</strong></span>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Email Templates -->
+        <div class="section">
+            <div class="section-header">
+                <i data-lucide="file-text" class="section-icon"></i>
+                <span class="section-title">Email Templates</span>
+            </div>
+            
+            <!-- Template Categories -->
+            <div class="template-categories">
+                <button class="category-btn active" onclick="selectCategory('candidate')">Candidate</button>
+                <button class="category-btn" onclick="selectCategory('client')">Client</button>
+                <button class="category-btn" onclick="selectCategory('interview')">Interview</button>
+            </div>
+            
+            <!-- Template Grid -->
+            <div class="template-grid" id="templateGrid">
+                <!-- Candidate Templates -->
+                <div class="template-card" onclick="selectTemplate('application-received')">
+                    <div class="template-title">Application Received</div>
+                    <div class="template-desc">Acknowledge candidate application with next steps</div>
+                    <div class="template-tags">
+                        <span class="template-tag">Professional</span>
+                        <span class="template-tag">Auto</span>
+                    </div>
+                </div>
+                
+                <div class="template-card" onclick="selectTemplate('interview-invitation')">
+                    <div class="template-title">Interview Invitation</div>
+                    <div class="template-desc">Invite candidate for interview with details</div>
+                    <div class="template-tags">
+                        <span class="template-tag">Formal</span>
+                        <span class="template-tag">Scheduling</span>
+                    </div>
+                </div>
+                
+                <div class="template-card" onclick="selectTemplate('follow-up')">
+                    <div class="template-title">Candidate Follow-up</div>
+                    <div class="template-desc">Professional follow-up after interview</div>
+                    <div class="template-tags">
+                        <span class="template-tag">Follow-up</span>
+                        <span class="template-tag">Warm</span>
+                    </div>
+                </div>
+                
+                <div class="template-card" onclick="selectTemplate('rejection-feedback')">
+                    <div class="template-title">Constructive Rejection</div>
+                    <div class="template-desc">Professional rejection with helpful feedback</div>
+                    <div class="template-tags">
+                        <span class="template-tag">Respectful</span>
+                        <span class="template-tag">Feedback</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Writing Assistant -->
+        <div class="ai-writing">
+            <div class="ai-header">
+                <i data-lucide="bot" class="ai-icon"></i>
+                <span class="ai-title">AI Writing Assistant</span>
+            </div>
+            <textarea class="ai-prompt" placeholder="Describe what you want to write... e.g., 'Write a professional follow-up email to a candidate after their interview for a Senior Developer role'" id="aiPrompt"></textarea>
+            <div class="ai-controls">
+                <button class="ai-btn primary" onclick="generateEmail()">Generate</button>
+                <button class="ai-btn secondary" onclick="improveEmail()">Improve Tone</button>
+                <button class="ai-btn secondary" onclick="makeShorter()">Make Shorter</button>
+                <button class="ai-btn secondary" onclick="makeFormal()">More Formal</button>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="section">
+            <div class="section-header">
+                <i data-lucide="zap" class="section-icon"></i>
+                <span class="section-title">Quick Actions</span>
+            </div>
+            <div class="quick-actions">
+                <button class="action-btn primary" onclick="insertTemplate()">
+                    <i data-lucide="plus" class="action-icon"></i>
+                    Insert Template
+                </button>
+                <button class="action-btn secondary" onclick="addCalendarLink()">
+                    <i data-lucide="calendar" class="action-icon"></i>
+                    Add Calendar
+                </button>
+                <button class="action-btn success" onclick="addSignature()">
+                    <i data-lucide="pen-tool" class="action-icon"></i>
+                    Add Signature
+                </button>
+                <button class="action-btn warning" onclick="scheduleEmail()">
+                    <i data-lucide="clock" class="action-icon"></i>
+                    Schedule Send
+                </button>
+            </div>
+        </div>
+
+        <!-- Email Signature -->
+        <div class="section">
+            <div class="section-header">
+                <i data-lucide="pen-tool" class="section-icon"></i>
+                <span class="section-title">Email Signature</span>
+            </div>
+            <div class="signature-preview">
+                <div class="signature-name">Your Name</div>
+                <div class="signature-role">Senior Recruitment Consultant</div>
+                <div class="signature-contact">
+                    📧 your.email@emineon.com<br>
+                    📞 +1 (555) 123-4567<br>
+                    🌐 www.emineon.com
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Templates -->
+        <div class="section">
+            <div class="section-header">
+                <i data-lucide="clock" class="section-icon"></i>
+                <span class="section-title">Recently Used</span>
+            </div>
+            <div class="template-grid" id="recentTemplates">
+                <div class="template-card" onclick="selectTemplate('recent-interview')">
+                    <div class="template-title">Interview Confirmation</div>
+                    <div class="template-desc">Last used 2 hours ago</div>
+                    <div class="template-tags">
+                        <span class="template-tag">Recent</span>
+                    </div>
+                </div>
+                
+                <div class="template-card" onclick="selectTemplate('recent-followup')">
+                    <div class="template-title">Client Follow-up</div>
+                    <div class="template-desc">Last used yesterday</div>
+                    <div class="template-tags">
+                        <span class="template-tag">Recent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/compose-taskpane.js"></script>
+</body>
+</html> 

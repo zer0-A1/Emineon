@@ -1,0 +1,76 @@
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js build output
+.next
+out
+
+# Production build files
+build
+dist
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Logs
+logs
+*.log
+
+# Coverage directory used by tools like istanbul
+coverage
+*.lcov
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Documentation and reports
+README.md
+CHANGELOG.md
+*.md
+button-audit.js
+button-audit-report-*.json
+performance-optimizer.js
+comprehensive-test.js
+button-functionality-test.js
+
+# Vercel
+.vercel
+
+# Testing
+test
+tests
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+
+# Storybook
+.storybook
+storybook-static 

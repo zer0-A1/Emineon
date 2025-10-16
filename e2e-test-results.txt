@@ -1,0 +1,83 @@
+============================================================
+EMINEON ATS - E2E TEST EXECUTION
+============================================================
+API Base URL: http://localhost:3000/api
+Started at: 2025-09-21T10:19:22.504Z
+
+
+🧪 Running: API Health Check
+  ✓ Database response time: 109ms
+  ✓ Services: {"database":"ok","openai":"ok","algolia":"missing config"}
+✅ PASSED: API Health Check
+
+🧪 Running: Create Candidate
+  ✓ Created candidate ID: 648eb313-2e34-4ed4-a641-94c2199c3498
+✅ PASSED: Create Candidate
+
+🧪 Running: Vector Search for Python Developer
+  ✓ Found 10 candidates
+  ✓ Search type: vector
+  ✓ Top result: Test Developer (score: 0.47445324215572393)
+✅ PASSED: Vector Search for Python Developer
+
+🧪 Running: Create Job
+  ✓ Created job ID: 8c82bc27-cd5a-4b30-a027-de38588353fb
+✅ PASSED: Create Job
+
+🧪 Running: Add Candidate to Job Pipeline
+❌ FAILED: Add Candidate to Job Pipeline
+   Error: invalid json response body at http://localhost:3000/api/jobs/8c82bc27-cd5a-4b30-a027-de38588353fb/candidates reason: Unexpected token '<', ..."          <pre>missi"... is not valid JSON
+
+🧪 Running: CV Upload and Parse
+  ✓ CV parsed successfully
+  ✓ Extracted name: Jane E2E Developer
+✅ PASSED: CV Upload and Parse
+
+🧪 Running: Search Performance Test
+  ✓ "Python backend developer": 403ms (10 results)
+  ✓ "React frontend engineer": 254ms (10 results)
+  ✓ "Full stack JavaScript": 227ms (10 results)
+  ✓ "Machine learning": 232ms (10 results)
+  ✓ "DevOps Kubernetes": 280ms (10 results)
+  ✓ Average search time: 279ms
+✅ PASSED: Search Performance Test
+
+🧪 Running: Data Persistence
+❌ FAILED: Data Persistence
+   Error: invalid json response body at http://localhost:3000/api/candidates/fe086a5e-f45c-4ac0-b022-5d0348cb9077 reason: Unexpected token '<', ..."          <pre>missi"... is not valid JSON
+
+🧪 Running: Job Management Workflow
+  ✓ Found 0 published jobs
+❌ FAILED: Job Management Workflow
+   Error: invalid json response body at http://localhost:3000/api/jobs/8c82bc27-cd5a-4b30-a027-de38588353fb reason: Unexpected token '<', ..."          <pre>missi"... is not valid JSON
+
+🧪 Running: UI Access Test
+  ✓ UI accessible without authentication
+✅ PASSED: UI Access Test
+
+============================================================
+E2E TEST SUMMARY
+============================================================
+Total Tests: 10
+✅ Passed: 7
+❌ Failed: 3
+Success Rate: 70.0%
+
+Detailed Results:
+  ✅ PASSED API Health Check
+  ✅ PASSED Create Candidate
+  ✅ PASSED Vector Search for Python Developer
+  ✅ PASSED Create Job
+  ❌ FAILED Add Candidate to Job Pipeline
+      Error: invalid json response body at http://localhost:3000/api/jobs/8c82bc27-cd5a-4b30-a027-de38588353fb/candidates reason: Unexpected token '<', ..."          <pre>missi"... is not valid JSON
+  ✅ PASSED CV Upload and Parse
+  ✅ PASSED Search Performance Test
+  ❌ FAILED Data Persistence
+      Error: invalid json response body at http://localhost:3000/api/candidates/fe086a5e-f45c-4ac0-b022-5d0348cb9077 reason: Unexpected token '<', ..."          <pre>missi"... is not valid JSON
+  ❌ FAILED Job Management Workflow
+      Error: invalid json response body at http://localhost:3000/api/jobs/8c82bc27-cd5a-4b30-a027-de38588353fb reason: Unexpected token '<', ..."          <pre>missi"... is not valid JSON
+  ✅ PASSED UI Access Test
+
+============================================================
+Completed at: 2025-09-21T10:19:31.959Z
+============================================================

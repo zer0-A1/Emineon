@@ -1,0 +1,231 @@
+/* Emineon ATS LinkedIn Extension Styles */
+
+.emineon-add-candidate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #0A2F5A 0%, #008080 100%);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 8px 8px 8px 0;
+  box-shadow: 0 2px 8px rgba(10, 47, 90, 0.2);
+  z-index: 1000;
+  position: relative;
+}
+
+.emineon-add-candidate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(10, 47, 90, 0.4);
+  background: linear-gradient(135deg, #0A2F5A 0%, #006666 100%);
+}
+
+.emineon-add-candidate-btn:active {
+  transform: translateY(0);
+}
+
+.emineon-add-candidate-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.emineon-add-candidate-btn svg {
+  flex-shrink: 0;
+}
+
+/* Search result buttons */
+.emineon-search-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, #0A2F5A 0%, #008080 100%);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 4px 4px 4px 0;
+  box-shadow: 0 1px 4px rgba(10, 47, 90, 0.2);
+  z-index: 1000;
+  position: relative;
+}
+
+.emineon-search-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(10, 47, 90, 0.4);
+  background: linear-gradient(135deg, #0A2F5A 0%, #006666 100%);
+}
+
+.emineon-search-btn:active {
+  transform: translateY(0);
+}
+
+.emineon-search-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.emineon-search-btn svg {
+  flex-shrink: 0;
+}
+
+/* Search button container */
+.emineon-search-button-container {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Loading spinner */
+.emineon-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: emineon-spin 1s linear infinite;
+}
+
+@keyframes emineon-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Button container */
+.emineon-button-container {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  padding: 12px;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Notifications */
+.emineon-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 10000;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.emineon-notification-success {
+  background: #10B981;
+}
+
+.emineon-notification-error {
+  background: #EF4444;
+}
+
+.emineon-notification-info {
+  background: #3B82F6;
+}
+
+/* Search result specific styling */
+.entity-result .emineon-search-btn,
+.search-result .emineon-search-btn {
+  margin-top: 8px;
+}
+
+.entity-result__actions .emineon-search-btn,
+.search-result__actions .emineon-search-btn {
+  margin-left: 8px;
+}
+
+/* Success and error states */
+.emineon-add-candidate-btn.success,
+.emineon-search-btn.success {
+  background: #10B981 !important;
+}
+
+.emineon-add-candidate-btn.error,
+.emineon-search-btn.error {
+  background: #EF4444 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .emineon-add-candidate-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    margin: 4px 4px 4px 0;
+  }
+  
+  .emineon-search-btn {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+  
+  .emineon-notification {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+}
+
+/* Integration with LinkedIn's existing styles */
+.pv-top-card-v2-ctas .emineon-add-candidate-btn,
+.pv-s-profile-actions .emineon-add-candidate-btn {
+  margin-left: 8px;
+}
+
+/* Ensure button appears correctly in different LinkedIn layouts */
+.artdeco-card.pv-top-card .emineon-button-container {
+  padding: 16px 24px 0;
+}
+
+.pv-text-details__left-panel .emineon-button-container {
+  margin-top: 12px;
+}
+
+/* Search results layout fixes */
+.entity-result__content .emineon-search-button-container {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Animation classes */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+} 

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Emineon Email Reader</title>
+    
+    <!-- Office.js -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* Emineon Platform Design System */
+        :root {
+            /* Primary Colors - Deep Navy Blue */
+            --primary-50: #F0F4F8;
+            --primary-100: #E1E9F1;
+            --primary-200: #C3D3E3;
+            --primary-300: #A5BDD5;
+            --primary-400: #6691B9;
+            --primary-500: #0A2F5A;
+            --primary-600: #092951;
+            --primary-700: #072040;
+            --primary-800: #051730;
+            --primary-900: #040E20;
+            
+            /* Secondary Colors - Steel Gray */
+            --secondary-50: #F8F9FA;
+            --secondary-100: #E9ECEF;
+            --secondary-200: #DEE2E6;
+            --secondary-300: #CED4DA;
+            --secondary-400: #ADB5BD;
+            --secondary-500: #6C757D;
+            --secondary-600: #495057;
+            --secondary-700: #444B54;
+            --secondary-800: #343A40;
+            --secondary-900: #232629;
+            
+            /* Accent Colors - Burnt Orange */
+            --accent-50: #FEF4ED;
+            --accent-100: #FDE8D7;
+            --accent-200: #FBCEB0;
+            --accent-300: #F8B088;
+            --accent-400: #F4985F;
+            --accent-500: #C75B12;
+            --accent-600: #B8520F;
+            --accent-700: #A8490D;
+            --accent-800: #98400A;
+            --accent-900: #893708;
+            
+            /* Teal */
+            --teal-50: #E6F7F7;
+            --teal-100: #CCEEEE;
+            --teal-200: #99DDDD;
+            --teal-300: #66CCCC;
+            --teal-400: #33BBBB;
+            --teal-500: #008080;
+            --teal-600: #007373;
+            --teal-700: #006666;
+            --teal-800: #005959;
+            --teal-900: #004D4D;
+            
+            /* Success */
+            --success-50: #ECFDF5;
+            --success-100: #D1FAE5;
+            --success-500: #10B981;
+            --success-700: #047857;
+            
+            /* Warning */
+            --warning-50: #FFFBEB;
+            --warning-100: #FEF3C7;
+            --warning-500: #F59E0B;
+            --warning-700: #B45309;
+            
+            /* Error */
+            --error-50: #FEF2F2;
+            --error-100: #FEE2E2;
+            --error-500: #EF4444;
+            --error-700: #B91C1C;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            background: #F8FAFC;
+            color: #0F172A;
+            overflow-x: hidden;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0A2F5A 0%, #0891B2 100%);
+            color: white;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .header-title {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        
+        .status-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Main Content */
+        .container {
+            padding: 0;
+            max-height: calc(100vh - 64px);
+            overflow-y: auto;
+        }
+        
+        .section {
+            background: white;
+            margin: 12px;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #E2E8F0;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0A2F5A;
+        }
+        
+        .section-icon {
+            width: 16px;
+            height: 16px;
+            color: #0891B2;
+        }
+        
+        /* Email Info */
+        .email-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .email-field {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .email-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #64748B;
+            min-width: 60px;
+        }
+        
+        .email-value {
+            font-size: 12px;
+            color: #0F172A;
+            flex: 1;
+            word-break: break-word;
+        }
+        
+        /* Contact Extraction */
+        .contact-card {
+            background: #F1F5F9;
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .contact-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0A2F5A;
+            margin-bottom: 4px;
+        }
+        
+        .contact-email {
+            font-size: 12px;
+            color: #64748B;
+            margin-bottom: 8px;
+        }
+        
+        .contact-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .contact-btn.candidate {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+        
+        .contact-btn.client {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        
+        .contact-btn.contact {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* AI Insights */
+        .ai-insight {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            border: 1px solid #0891B2;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .insight-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+        
+        .ai-icon {
+            width: 14px;
+            height: 14px;
+            color: #0891B2;
+        }
+        
+        .insight-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0A2F5A;
+        }
+        
+        .insight-content {
+            font-size: 11px;
+            color: #374151;
+            line-height: 1.4;
+        }
+        
+        /* Action Buttons */
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: none;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+        
+        .action-btn.primary {
+            background: #0A2F5A;
+            color: white;
+        }
+        
+        .action-btn.secondary {
+            background: #0891B2;
+            color: white;
+        }
+        
+        .action-btn.success {
+            background: #059669;
+            color: white;
+        }
+        
+        .action-btn.warning {
+            background: #D97706;
+            color: white;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .action-icon {
+            width: 14px;
+            height: 14px;
+        }
+        
+        /* Quick Actions */
+        .quick-actions {
+            background: white;
+            margin: 12px;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #E2E8F0;
+        }
+        
+        /* Copilot Chat */
+        .copilot-section {
+            background: linear-gradient(135deg, #FEF7FF 0%, #F3E8FF 100%);
+            border: 1px solid #A855F7;
+            margin: 12px;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .copilot-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .copilot-icon {
+            width: 16px;
+            height: 16px;
+            color: #A855F7;
+        }
+        
+        .copilot-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #7C2D12;
+        }
+        
+        .chat-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #D1D5DB;
+            border-radius: 6px;
+            font-size: 12px;
+            resize: none;
+            height: 60px;
+        }
+        
+        .chat-send {
+            background: #A855F7;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 8px;
+            float: right;
+        }
+        
+        /* Attachments */
+        .attachment-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 4px;
+            margin-bottom: 6px;
+        }
+        
+        .attachment-icon {
+            width: 12px;
+            height: 12px;
+            color: #64748B;
+        }
+        
+        .attachment-name {
+            font-size: 11px;
+            color: #374151;
+            flex: 1;
+        }
+        
+        .cv-badge {
+            background: #FEE2E2;
+            color: #B91C1C;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 500;
+        }
+        
+        /* Loading states */
+        .loading {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748B;
+            font-size: 11px;
+        }
+        
+        .spinner {
+            width: 12px;
+            height: 12px;
+            border: 2px solid #E2E8F0;
+            border-top: 2px solid #0891B2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 320px) {
+            .section {
+                margin: 8px;
+                padding: 12px;
+            }
+            
+            .action-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <img src="https://res.cloudinary.com/emineon/image/upload/Emineon_logo_tree_white_lfwp8h" alt="Emineon" class="logo">
+            <span class="header-title">Email Reader</span>
+        </div>
+        <div class="status-badge">Connected</div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Email Information -->
+        <div class="section">
+            <div class="section-header">
+                <i data-lucide="mail" class="section-icon"></i>
+                <span class="section-title">Email Details</span>
+            </div>
+            <div class="email-info">
+                <div class="email-field">
+                    <span class="email-label">Subject:</span>
+                    <span class="email-value" id="emailSubject">Loading...</span>
+                </div>
+                <div class="email-field">
+                    <span class="email-label">From:</span>
+                    <span class="email-value" id="emailSender">Loading...</span>
+                </div>
+                <div class="email-field">
+                    <span class="email-label">Date:</span>
+                    <span class="email-value" id="emailDate">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Extraction -->
+        <div class="section">
+            <div class="section-header">
+                <i data-lucide="user-plus" class="section-icon"></i>
+                <span class="section-title">Contact Information</span>
+            </div>
+            <div id="extractedContacts">
+                <div class="contact-card">
+                    <div class="contact-name" id="contactName">John Smith</div>
+                    <div class="contact-email" id="contactEmail">john.smith@company.com</div>
+                    <div class="contact-actions">
+                        <button class="contact-btn candidate">Add as Candidate</button>
+                        <button class="contact-btn client">Add as Client</button>
+                        <button class="contact-btn contact">Add to Contacts</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Insights -->
+        <div class="section">
+            <div class="section-header">
+                <i data-lucide="brain" class="section-icon"></i>
+                <span class="section-title">AI Analysis</span>
+            </div>
+            <div class="ai-insight">
+                <div class="insight-header">
+                    <i data-lucide="sparkles" class="ai-icon"></i>
+                    <span class="insight-title">Email Classification</span>
+                </div>
+                <div class="insight-content" id="emailClassification">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Analyzing email content...
+                    </div>
+                </div>
+            </div>
+            <div class="ai-insight">
+                <div class="insight-header">
+                    <i data-lucide="target" class="ai-icon"></i>
+                    <span class="insight-title">Suggested Actions</span>
+                </div>
+                <div class="insight-content" id="suggestedActions">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Generating suggestions...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attachments -->
+        <div class="section" id="attachmentsSection" style="display: none;">
+            <div class="section-header">
+                <i data-lucide="paperclip" class="section-icon"></i>
+                <span class="section-title">Attachments</span>
+            </div>
+            <div id="attachmentsList">
+                <!-- Attachments will be populated here -->
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="section">
+            <div class="section-header">
+                <i data-lucide="zap" class="section-icon"></i>
+                <span class="section-title">Quick Actions</span>
+            </div>
+            <div class="action-grid">
+                <button class="action-btn primary" onclick="createJob()">
+                    <i data-lucide="briefcase" class="action-icon"></i>
+                    Create Job
+                </button>
+                <button class="action-btn secondary" onclick="scheduleInterview()">
+                    <i data-lucide="calendar" class="action-icon"></i>
+                    Schedule Interview
+                </button>
+                <button class="action-btn success" onclick="createProject()">
+                    <i data-lucide="folder-plus" class="action-icon"></i>
+                    Create Project
+                </button>
+                <button class="action-btn warning" onclick="scheduleClientMeeting()">
+                    <i data-lucide="users" class="action-icon"></i>
+                    Client Meeting
+                </button>
+            </div>
+        </div>
+
+        <!-- Copilot Chat -->
+        <div class="copilot-section">
+            <div class="copilot-header">
+                <i data-lucide="bot" class="copilot-icon"></i>
+                <span class="copilot-title">Emineon Copilot</span>
+            </div>
+            <textarea class="chat-input" placeholder="Ask Copilot about this email or get suggestions..." id="copilotInput"></textarea>
+            <button class="chat-send" onclick="sendToCopilot()">Send</button>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <script src="js/taskpane.js"></script>
+</body>
+</html> 

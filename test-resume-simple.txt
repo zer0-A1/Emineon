@@ -1,0 +1,30 @@
+ALEX THOMPSON
+Data Scientist
+
+Email: alex.thompson@email.com
+Phone: +1 (555) 321-9876
+Location: Boston, MA
+
+PROFESSIONAL SUMMARY
+Experienced Data Scientist with 5+ years of expertise in machine learning, statistical analysis, and data visualization.
+
+TECHNICAL SKILLS
+Programming Languages: Python, R, SQL, Scala
+Machine Learning: Scikit-learn, TensorFlow, PyTorch
+Data Visualization: Matplotlib, Seaborn, Plotly, Tableau
+
+PROFESSIONAL EXPERIENCE
+
+Senior Data Scientist | DataCorp Inc. | 2020-01 - Present
+• Developed predictive models that improved customer retention by 25%
+• Led data science team of 4 analysts
+• Implemented machine learning pipelines using Python and AWS
+
+Data Analyst | Analytics Solutions | 2018-06 - 2019-12
+• Analyzed large datasets to identify business insights
+• Created interactive dashboards using Tableau
+• Collaborated with stakeholders to define KPIs
+
+EDUCATION
+Master of Science in Data Science | MIT | 2016-2018
+Bachelor of Science in Statistics | Harvard University | 2012-2016

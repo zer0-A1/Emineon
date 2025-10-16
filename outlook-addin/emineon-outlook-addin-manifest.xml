@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" 
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" 
+           xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" 
+           xsi:type="MailApp">
+
+  <!-- IMPORTANT! Id must be unique for each add-in. If you copy this manifest ensure that you change this id to your own GUID. -->
+  <Id>5a3b8456-d0f2-4b3c-a1e9-7f8c6d5e4a2b</Id>
+  <Version>2.0.1</Version>
+  <ProviderName>Emineon ATS</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Emineon Recruitment Assistant"/>
+  <Description DefaultValue="AI-powered recruitment tools for email reading and composition"/>
+  <IconUrl DefaultValue="https://app-emineon.vercel.app/api/outlook-addin/icons/emineon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://app-emineon.vercel.app/api/outlook-addin/icons/emineon-128.png"/>
+  <SupportUrl DefaultValue="https://emineon.com"/>
+
+  <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-in's dialog. -->
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+
+  <!-- Requirements -->
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="Mailbox" MinVersion="1.1"/>
+    </Sets>
+  </Requirements>
+
+  <!-- Form Settings -->
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://app-emineon.vercel.app/api/outlook-addin/taskpane.html"/>
+        <RequestedHeight>450</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+    <Form xsi:type="ItemEdit">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://app-emineon.vercel.app/api/outlook-addin/compose-taskpane.html"/>
+        <RequestedHeight>450</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+
+  <!-- Permissions -->
+  <Permissions>ReadWriteMailbox</Permissions>
+
+  <!-- Rule Collection -->
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit"/>
+    <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Read"/>
+    <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Edit"/>
+  </Rule>
+
+  <!-- Disable Entity Highlighting -->
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+
+  <!-- Version Overrides -->
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.3">
+        <bt:Set Name="Mailbox"/>
+      </bt:Sets>
+    </Requirements>
+
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <!-- Desktop Form Factor -->
+        <DesktopFormFactor>
+          
+          <!-- Function Commands -->
+          <FunctionFile resid="Emineon.Commands.Url"/>
+
+          <!-- Extension Points -->
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="Emineon.ReadGroup">
+                <Label resid="Emineon.ReadGroup.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Emineon.Icon16"/>
+                  <bt:Image size="32" resid="Emineon.Icon32"/>
+                  <bt:Image size="80" resid="Emineon.Icon80"/>
+                </Icon>
+
+                <!-- Email Reader Task Pane -->
+                <Control xsi:type="Button" id="Emineon.ReadTaskPane">
+                  <Label resid="Emineon.ReadTaskPane.Label"/>
+                  <Supertip>
+                    <Title resid="Emineon.ReadTaskPane.Title"/>
+                    <Description resid="Emineon.ReadTaskPane.Description"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Emineon.Icon16"/>
+                    <bt:Image size="32" resid="Emineon.Icon32"/>
+                    <bt:Image size="80" resid="Emineon.Icon80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>Emineon.ReadTaskPane</TaskpaneId>
+                    <SourceLocation resid="Emineon.ReadTaskPane.Url"/>
+                  </Action>
+                </Control>
+
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+
+          <!-- Compose Extension Point -->
+          <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="Emineon.ComposeGroup">
+                <Label resid="Emineon.ComposeGroup.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Emineon.Icon16"/>
+                  <bt:Image size="32" resid="Emineon.Icon32"/>
+                  <bt:Image size="80" resid="Emineon.Icon80"/>
+                </Icon>
+
+                <!-- Email Composer Task Pane -->
+                <Control xsi:type="Button" id="Emineon.ComposeTaskPane">
+                  <Label resid="Emineon.ComposeTaskPane.Label"/>
+                  <Supertip>
+                    <Title resid="Emineon.ComposeTaskPane.Title"/>
+                    <Description resid="Emineon.ComposeTaskPane.Description"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Emineon.Icon16"/>
+                    <bt:Image size="32" resid="Emineon.Icon32"/>
+                    <bt:Image size="80" resid="Emineon.Icon80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>Emineon.ComposeTaskPane</TaskpaneId>
+                    <SourceLocation resid="Emineon.ComposeTaskPane.Url"/>
+                  </Action>
+                </Control>
+
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <!-- Resources -->
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Emineon.Icon16" DefaultValue="https://app-emineon.vercel.app/api/outlook-addin/icons/emineon-16.png"/>
+        <bt:Image id="Emineon.Icon32" DefaultValue="https://app-emineon.vercel.app/api/outlook-addin/icons/emineon-32.png"/>
+        <bt:Image id="Emineon.Icon80" DefaultValue="https://app-emineon.vercel.app/api/outlook-addin/icons/emineon-80.png"/>
+      </bt:Images>
+      
+      <bt:Urls>
+        <bt:Url id="Emineon.Commands.Url" DefaultValue="https://app-emineon.vercel.app/api/outlook-addin/commands.html"/>
+        <bt:Url id="Emineon.ReadTaskPane.Url" DefaultValue="https://app-emineon.vercel.app/api/outlook-addin/taskpane.html"/>
+        <bt:Url id="Emineon.ComposeTaskPane.Url" DefaultValue="https://app-emineon.vercel.app/api/outlook-addin/compose-taskpane.html"/>
+      </bt:Urls>
+      
+      <bt:ShortStrings>
+        <bt:String id="Emineon.ReadGroup.Label" DefaultValue="Emineon Reader"/>
+        <bt:String id="Emineon.ComposeGroup.Label" DefaultValue="Emineon Composer"/>
+        <bt:String id="Emineon.ReadTaskPane.Label" DefaultValue="Email Analysis"/>
+        <bt:String id="Emineon.ComposeTaskPane.Label" DefaultValue="Email Templates"/>
+        <bt:String id="Emineon.ReadTaskPane.Title" DefaultValue="Emineon Email Analysis"/>
+        <bt:String id="Emineon.ComposeTaskPane.Title" DefaultValue="Emineon Email Templates"/>
+      </bt:ShortStrings>
+      
+      <bt:LongStrings>
+        <bt:String id="Emineon.ReadTaskPane.Description" DefaultValue="Analyze emails, extract contact info, and get AI-powered recruitment insights"/>
+        <bt:String id="Emineon.ComposeTaskPane.Description" DefaultValue="Access professional email templates and AI writing assistance for recruitment"/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp> 

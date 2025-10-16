@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs Page Manual Test Helper</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 { color: #1a1a1a; }
+        h2 { color: #333; margin-top: 0; }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .button:hover { background: #2563eb; }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .checklist input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .status.pass { background: #10b981; color: white; }
+        .status.fail { background: #ef4444; color: white; }
+        .status.pending { background: #f59e0b; color: white; }
+        .code {
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .screenshot-btn {
+            background: #10b981;
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Jobs Page Manual Testing</h1>
+    
+    <div class="test-card">
+        <h2>📍 Current Status</h2>
+        <p>Application URL: <code id="app-url">http://localhost:3000</code></p>
+        <p>Test Started: <code id="test-time"></code></p>
+        <a href="http://localhost:3000/jobs" target="_blank" class="button">Open Jobs Page</a>
+        <a href="http://localhost:3000" target="_blank" class="button">Open Home Page</a>
+    </div>
+
+    <div class="test-card">
+        <h2>✅ Quick Checks</h2>
+        <ul class="checklist">
+            <li>
+                <input type="checkbox" id="check1">
+                <label for="check1">Application is running on localhost:3000</label>
+            </li>
+            <li>
+                <input type="checkbox" id="check2">
+                <label for="check2">Successfully signed in to the application</label>
+            </li>
+            <li>
+                <input type="checkbox" id="check3">
+                <label for="check3">Can access /jobs without redirect to sign-in</label>
+            </li>
+            <li>
+                <input type="checkbox" id="check4">
+                <label for="check4">View toggle buttons are visible (List, Grid, Group by Client)</label>
+            </li>
+            <li>
+                <input type="checkbox" id="check5">
+                <label for="check5">Job cards display with blue left border</label>
+            </li>
+            <li>
+                <input type="checkbox" id="check6">
+                <label for="check6">No star icons in job titles</label>
+            </li>
+            <li>
+                <input type="checkbox" id="check7">
+                <label for="check7">Grid view shows pipeline kanban</label>
+            </li>
+            <li>
+                <input type="checkbox" id="check8">
+                <label for="check8">Single-row cards are clickable and open detail page</label>
+            </li>
+            <li>
+                <input type="checkbox" id="check9">
+                <label for="check9">"Expand All" button cycles through states correctly</label>
+            </li>
+            <li>
+                <input type="checkbox" id="check10">
+                <label for="check10">No console errors (Check F12)</label>
+            </li>
+        </ul>
+        <button onclick="calculateScore()" class="button screenshot-btn">Calculate Test Score</button>
+        <p id="score-result"></p>
+    </div>
+
+    <div class="test-card">
+        <h2>🔍 Console Commands</h2>
+        <p>Open browser console (F12) and run these commands to check state:</p>
+        <pre style="background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 6px; overflow-x: auto;">
+// Check current view mode
+sessionStorage.getItem('jobsViewMode')
+
+// Check if jobs data exists
+JSON.parse(sessionStorage.getItem('jobsData') || '[]').length
+
+// Check for React DevTools
+!!window.__REACT_DEVTOOLS_GLOBAL_HOOK__
+
+// Get all job cards
+document.querySelectorAll('[data-test="job-card"]').length
+
+// Check for blue borders
+[...document.querySelectorAll('[data-test="job-card"]')].filter(el => 
+  getComputedStyle(el).borderLeftWidth === '4px'
+).length</pre>
+    </div>
+
+    <div class="test-card">
+        <h2>📸 Visual Reference</h2>
+        <p>What each view should look like:</p>
+        <ul>
+            <li><strong>List View:</strong> Vertical list, cards can be single-row/expanded/medium</li>
+            <li><strong>Grid View:</strong> 3-column grid (desktop), vertical pipeline in each card</li>
+            <li><strong>Client View:</strong> Jobs grouped under client headers, each section has toggle</li>
+        </ul>
+        <p><em>Take screenshots of any issues found!</em></p>
+    </div>
+
+    <div class="test-card">
+        <h2>🐛 Issue Reporter</h2>
+        <textarea id="issue-notes" rows="6" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" 
+                  placeholder="Describe any issues found..."></textarea>
+        <br><br>
+        <button onclick="generateReport()" class="button">Generate Issue Report</button>
+        <pre id="report-output" style="display: none; background: #f3f4f6; padding: 15px; border-radius: 6px; margin-top: 15px;"></pre>
+    </div>
+
+    <script>
+        // Set current time
+        document.getElementById('test-time').textContent = new Date().toLocaleString();
+        
+        // Save checkbox states
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', (e) => {
+                localStorage.setItem(e.target.id, e.target.checked);
+            });
+            // Restore state
+            cb.checked = localStorage.getItem(cb.id) === 'true';
+        });
+        
+        function calculateScore() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checked = [...checkboxes].filter(cb => cb.checked).length;
+            const total = checkboxes.length;
+            const percentage = Math.round((checked / total) * 100);
+            
+            let status = 'pending';
+            if (percentage === 100) status = 'pass';
+            else if (percentage < 50) status = 'fail';
+            
+            document.getElementById('score-result').innerHTML = 
+                `Test Score: <span class="status ${status}">${checked}/${total} (${percentage}%)</span>`;
+        }
+        
+        function generateReport() {
+            const notes = document.getElementById('issue-notes').value;
+            const checkboxes = [...document.querySelectorAll('input[type="checkbox"]')];
+            const failed = checkboxes.filter(cb => !cb.checked).map(cb => cb.nextElementSibling.textContent);
+            
+            const report = `
+JOBS PAGE TEST REPORT
+Generated: ${new Date().toLocaleString()}
+
+FAILED CHECKS:
+${failed.length ? failed.map(f => `- ${f}`).join('\n') : 'None'}
+
+ADDITIONAL NOTES:
+${notes || 'No additional notes'}
+
+BROWSER: ${navigator.userAgent}
+URL: ${window.location.href}
+            `.trim();
+            
+            document.getElementById('report-output').textContent = report;
+            document.getElementById('report-output').style.display = 'block';
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(report).then(() => {
+                alert('Report copied to clipboard!');
+            });
+        }
+        
+        // Quick status check
+        fetch('http://localhost:3000/api/health')
+            .then(r => r.ok ? console.log('✅ API is responsive') : console.error('❌ API not responding'))
+            .catch(() => console.error('❌ Cannot reach application'));
+    </script>
+</body>
+</html>

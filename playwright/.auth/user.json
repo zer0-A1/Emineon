@@ -1,0 +1,77 @@
+{
+  "cookies": [
+    {
+      "name": "__session",
+      "value": "mock_session_token",
+      "domain": "localhost",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__client_uat",
+      "value": "0",
+      "domain": "localhost",
+      "path": "/",
+      "expires": 1790011883,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "__clerk_db_jwt",
+      "value": "dvb_331DrV7X9IE4Ho8Vc6GqBRQ4TRT",
+      "domain": "localhost",
+      "path": "/",
+      "expires": 1790011883,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__cf_bm",
+      "value": "3s.ArnEB_k7LenQ6zLUAa8bTFfSvY_NP1csRMGu6AW8-1758475883-1.0.1.1-EQ40qwIRGDvmzL5zrkCaGTfdnwxF311AKOEl90bxeOX9_iXqdtF5IJT8dh3Chta8v.dVT6oKfXgraLPj9Jkms9AbQJRthB_bPFfQMF7NiyI",
+      "domain": ".next-bunny-32.clerk.accounts.dev",
+      "path": "/",
+      "expires": 1758477683.689478,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_cfuvid",
+      "value": "2NgNnXsEkFAzB6LjCQmYApHo8KR0oyKrHyPI3KGj5eU-1758475883683-0.0.1.1-604800000",
+      "domain": ".next-bunny-32.clerk.accounts.dev",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "http://localhost:3000",
+      "localStorage": [
+        {
+          "name": "__dev_browser",
+          "value": "true"
+        },
+        {
+          "name": "__clerk_db_jwt",
+          "value": "mock_jwt_token"
+        },
+        {
+          "name": "emineon:sidebarPinned",
+          "value": "0"
+        },
+        {
+          "name": "clerk-db-jwt",
+          "value": "dvb_331DrV7X9IE4Ho8Vc6GqBRQ4TRT"
+        }
+      ]
+    }
+  ]
+}

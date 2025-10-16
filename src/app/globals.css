@@ -1,0 +1,589 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --input: 214 32% 91%;
+    --background: 0 0% 100%;
+    --ring: 222.2 84% 4.9%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --border: 214.3 31.8% 91.4%;
+  }
+
+  body {
+    @apply font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-primary-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200 shadow-soft;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary-200 hover:bg-secondary-300 text-secondary-800 font-medium px-4 py-2 rounded-lg transition-colors duration-200;
+  }
+  
+  .input-field {
+    @apply w-full px-3 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200;
+  }
+  
+  /* Unified blue glow hover for cards */
+  .glow-card {
+    @apply hover:shadow-[0_0_24px_rgba(37,99,235,0.35)] hover:ring-1 hover:ring-primary-200 transition-shadow duration-200;
+  }
+
+  .card-hover {
+    @apply hover:shadow-medium transform hover:-translate-y-1 transition-all duration-200;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-visible {
+    scrollbar-width: thin;
+    scrollbar-color: #CBD5E0 #F7FAFC;
+  }
+  
+  .scrollbar-visible::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .scrollbar-visible::-webkit-scrollbar-track {
+    background: #F7FAFC;
+    border-radius: 4px;
+  }
+  
+  .scrollbar-visible::-webkit-scrollbar-thumb {
+    background: #CBD5E0;
+    border-radius: 4px;
+  }
+  
+  .scrollbar-visible::-webkit-scrollbar-thumb:hover {
+    background: #A0AEC0;
+  }
+  
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  /* Resume Builder Styles */
+  .resume-container {
+    @apply bg-white shadow-medium rounded-xl overflow-hidden;
+  }
+
+  .resume-section {
+    @apply p-6 border-b border-neutral-200 last:border-b-0;
+  }
+
+  .resume-section-title {
+    @apply text-xl font-semibold text-primary-700 mb-4 flex items-center gap-2;
+  }
+
+  .resume-form-group {
+    @apply mb-4;
+  }
+
+  .resume-form-label {
+    @apply block text-sm font-medium text-secondary-700 mb-1;
+  }
+
+  .resume-form-input {
+    @apply w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200;
+  }
+
+  .resume-form-textarea {
+    @apply w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200 min-h-[100px] resize-y;
+  }
+
+  .resume-preview {
+    @apply bg-white border border-neutral-200 rounded-lg p-6;
+  }
+
+  .resume-preview-header {
+    @apply flex items-center gap-4 mb-6 pb-4 border-b border-neutral-200;
+  }
+
+  .resume-preview-photo {
+    @apply w-16 h-16 rounded-lg object-cover border border-neutral-300;
+  }
+
+  .resume-preview-name {
+    @apply text-2xl font-bold text-primary-800;
+  }
+
+  .resume-preview-title {
+    @apply text-lg text-secondary-600;
+  }
+
+  .resume-preview-contact {
+    @apply text-sm text-secondary-500;
+  }
+
+  .resume-preview-section {
+    @apply mb-6 last:mb-0;
+  }
+
+  .resume-preview-section-title {
+    @apply text-lg font-semibold text-primary-700 mb-3 pb-2 border-b border-neutral-200;
+  }
+
+  .resume-skill-tag {
+    @apply inline-block bg-primary-50 text-primary-700 px-2 py-1 rounded-md text-sm font-medium mr-2 mb-2;
+  }
+
+  .resume-experience-item {
+    @apply mb-4 last:mb-0;
+  }
+
+  .resume-experience-header {
+    @apply flex justify-between items-start mb-2;
+  }
+
+  .resume-experience-title {
+    @apply font-semibold text-primary-800;
+  }
+
+  .resume-experience-company {
+    @apply text-secondary-600;
+  }
+
+  .resume-experience-date {
+    @apply text-sm text-secondary-500;
+  }
+
+  .resume-experience-description {
+    @apply text-secondary-700 whitespace-pre-line;
+  }
+
+  .resume-education-item {
+    @apply mb-3 last:mb-0;
+  }
+
+  .resume-education-degree {
+    @apply font-semibold text-primary-800;
+  }
+
+  .resume-education-school {
+    @apply text-secondary-600;
+  }
+
+  .resume-education-date {
+    @apply text-sm text-secondary-500;
+  }
+
+  .resume-ai-suggestion {
+    @apply bg-teal-50 border border-teal-200 rounded-lg p-4 mb-4;
+  }
+
+  .resume-ai-suggestion-title {
+    @apply text-teal-700 font-medium mb-2;
+  }
+
+  .resume-ai-suggestion-content {
+    @apply text-teal-600 text-sm;
+  }
+
+  .resume-color-picker {
+    @apply w-8 h-8 rounded-full border-2 border-white shadow-medium cursor-pointer;
+  }
+
+  .resume-border-style-btn {
+    @apply p-2 border border-neutral-300 rounded-lg hover:bg-neutral-50 transition-colors duration-200;
+  }
+
+  .resume-border-style-btn.active {
+    @apply bg-primary-50 border-primary-500;
+  }
+
+  /* Competence File Styles */
+  .candidate-header {
+    @apply text-center mb-8 pb-6 border-b border-gray-200;
+  }
+
+  .candidate-name {
+    @apply text-3xl font-bold text-gray-900 mb-2;
+  }
+
+  .candidate-title {
+    @apply text-xl text-gray-600 mb-4;
+  }
+
+  .contact-info {
+    @apply flex flex-wrap justify-center gap-4 text-sm text-gray-600;
+  }
+
+  .contact-item {
+    @apply flex items-center gap-2;
+  }
+
+  .contact-icon {
+    @apply text-base;
+  }
+
+  /* Professional Summary Styles */
+  .professional-summary {
+    @apply mb-6;
+  }
+
+  .summary-text {
+    @apply text-gray-700 leading-relaxed mb-4;
+  }
+
+  .key-highlights {
+    @apply flex flex-wrap gap-3 mt-4;
+  }
+
+  .highlight-item {
+    @apply flex items-center gap-2 bg-blue-50 px-3 py-2 rounded-lg text-sm text-blue-700;
+  }
+
+  .highlight-icon {
+    @apply text-base;
+  }
+
+  /* Experience Section Styles */
+  .experience-section {
+    @apply space-y-6;
+  }
+
+  .experience-item {
+    @apply border-l-4 border-gray-200 pl-6 pb-6 relative;
+  }
+
+  .experience-item.current-role {
+    @apply border-l-blue-500;
+  }
+
+  .role-header {
+    @apply flex justify-between items-start mb-3;
+  }
+
+  .role-title-section {
+    @apply flex-1;
+  }
+
+  .job-title {
+    @apply text-lg font-semibold text-gray-900 mb-1;
+  }
+
+  .company-name {
+    @apply text-base text-gray-600 mb-2;
+  }
+
+  .employment-details {
+    @apply flex flex-col items-end text-sm text-gray-500;
+  }
+
+  .date-range {
+    @apply font-medium;
+  }
+
+  .current-badge {
+    @apply bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium mt-1;
+  }
+
+  .achievement-list {
+    @apply space-y-2;
+  }
+
+  .achievement-item {
+    @apply flex items-start gap-3;
+  }
+
+  .achievement-bullet {
+    @apply text-blue-500 font-bold mt-1 flex-shrink-0;
+  }
+
+  .achievement-text {
+    @apply text-gray-700 leading-relaxed;
+  }
+
+  .role-impact {
+    @apply mt-4 bg-gray-50 rounded-lg p-4;
+  }
+
+  .impact-metrics {
+    @apply flex gap-4;
+  }
+
+  .metric-item {
+    @apply text-center;
+  }
+
+  .metric-value {
+    @apply block text-sm font-semibold text-gray-900;
+  }
+
+  .metric-label {
+    @apply block text-xs text-gray-600;
+  }
+
+  /* Skills Section Styles */
+  .skills-section {
+    @apply space-y-6;
+  }
+
+  .skill-category {
+    @apply mb-6;
+  }
+
+  .category-title {
+    @apply flex items-center gap-2 text-lg font-semibold text-gray-900 mb-3;
+  }
+
+  .category-icon {
+    @apply text-xl;
+  }
+
+  .skill-tags {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .skill-tag {
+    @apply px-3 py-1 rounded-full text-sm font-medium transition-colors;
+  }
+
+  .skill-tag.technical {
+    @apply bg-blue-100 text-blue-800 hover:bg-blue-200;
+  }
+
+  .skill-tag.tools {
+    @apply bg-purple-100 text-purple-800 hover:bg-purple-200;
+  }
+
+  .skill-tag.leadership {
+    @apply bg-green-100 text-green-800 hover:bg-green-200;
+  }
+
+  .skill-tag.general {
+    @apply bg-gray-100 text-gray-800 hover:bg-gray-200;
+  }
+
+  /* Education Section Styles */
+  .education-section {
+    @apply space-y-4;
+  }
+
+  .education-item {
+    @apply bg-gray-50 rounded-lg p-4;
+  }
+
+  .education-header {
+    @apply flex items-start gap-3;
+  }
+
+  .education-icon {
+    @apply text-2xl mt-1;
+  }
+
+  .education-details {
+    @apply flex-1;
+  }
+
+  .degree-title {
+    @apply text-lg font-semibold text-gray-900 mb-1;
+  }
+
+  .institution-name {
+    @apply text-gray-600 mb-1;
+  }
+
+  .graduation-year {
+    @apply text-sm text-gray-500;
+  }
+
+  .education-highlights {
+    @apply mt-3;
+  }
+
+  .highlight-badge {
+    @apply bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  /* Certifications Section Styles */
+  .certifications-section {
+    @apply space-y-4;
+  }
+
+  .certifications-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+  }
+
+  .certification-item {
+    @apply bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-4;
+  }
+
+  .cert-header {
+    @apply flex items-center gap-3 mb-2;
+  }
+
+  .cert-icon {
+    @apply text-2xl;
+  }
+
+  .cert-title {
+    @apply text-base font-semibold text-gray-900;
+  }
+
+  .cert-status {
+    @apply flex justify-end;
+  }
+
+  .status-badge {
+    @apply px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .status-badge.active {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .certification-summary {
+    @apply mt-6 text-center;
+  }
+
+  .summary-note {
+    @apply flex items-center justify-center gap-2 text-sm text-gray-600 italic;
+  }
+
+  .summary-icon {
+    @apply text-base;
+  }
+
+  /* Languages Section Styles */
+  .languages-section {
+    @apply space-y-4;
+  }
+
+  .languages-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+  }
+
+  .language-item {
+    @apply bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4;
+  }
+
+  .language-header {
+    @apply flex items-center gap-3 mb-2;
+  }
+
+  .language-icon {
+    @apply text-xl;
+  }
+
+  .language-name {
+    @apply text-base font-semibold text-gray-900;
+  }
+
+  .proficiency-level {
+    @apply flex justify-end;
+  }
+
+  .proficiency-badge {
+    @apply px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .proficiency-badge.native {
+    @apply bg-green-100 text-green-700;
+  }
+
+  .proficiency-badge.fluent {
+    @apply bg-blue-100 text-blue-700;
+  }
+
+  .proficiency-badge.professional {
+    @apply bg-purple-100 text-purple-700;
+  }
+
+  .language-advantage {
+    @apply mt-6 text-center;
+  }
+
+  .advantage-note {
+    @apply flex items-center justify-center gap-2 text-sm text-gray-600 italic;
+  }
+
+  .advantage-icon {
+    @apply text-base;
+  }
+
+  /* Custom Section Styles */
+  .custom-section {
+    @apply text-center py-8;
+  }
+
+  .custom-placeholder {
+    @apply max-w-md mx-auto;
+  }
+
+  .placeholder-icon {
+    @apply text-4xl mb-4;
+  }
+
+  .placeholder-title {
+    @apply text-lg font-semibold text-gray-900 mb-2;
+  }
+
+  .placeholder-text {
+    @apply text-gray-600 mb-4;
+  }
+
+  .placeholder-suggestions {
+    @apply flex flex-wrap justify-center gap-2;
+  }
+
+  .suggestion-tag {
+    @apply bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm;
+  }
+
+  /* No Content Styles */
+  .no-content {
+    @apply text-center py-8 text-gray-500 italic;
+  }
+
+  /* Print Styles */
+  @media print {
+    .candidate-header {
+      @apply border-b border-gray-400;
+    }
+    
+    .experience-item {
+      @apply border-l-gray-400;
+    }
+    
+    .skill-tag, .proficiency-badge, .status-badge, .highlight-badge {
+      @apply border border-gray-400;
+    }
+  }
+} 

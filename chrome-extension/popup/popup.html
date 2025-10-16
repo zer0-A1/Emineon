@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emineon ATS - LinkedIn Extension</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <span>Emineon ATS</span>
+      </div>
+      <div class="status" id="connectionStatus">
+        <div class="status-indicator" id="statusIndicator"></div>
+        <span id="statusText">Checking...</span>
+      </div>
+    </div>
+
+    <!-- Configuration Section -->
+    <div class="section" id="configSection">
+      <h3>Configuration</h3>
+      <div class="form-group">
+        <label for="apiUrl">ATS URL</label>
+        <input type="url" id="apiUrl" placeholder="https://your-emineon-ats.com" />
+      </div>
+      <div class="form-group">
+        <label for="apiKey">API Key</label>
+        <input type="password" id="apiKey" placeholder="Your API key" />
+        <small>Get your API key from Emineon ATS Settings</small>
+      </div>
+      <button id="saveConfig" class="btn btn-primary">Save Configuration</button>
+    </div>
+
+    <!-- Status Section -->
+    <div class="section" id="statusSection" style="display: none;">
+      <h3>Quick Stats</h3>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number" id="candidatesAdded">0</span>
+          <span class="stat-label">Candidates Added</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="successRate">0%</span>
+          <span class="stat-label">Success Rate</span>
+        </div>
+      </div>
+      
+      <div class="recent-activity">
+        <h4>Recent Activity</h4>
+        <div id="recentList" class="activity-list">
+          <div class="activity-item">
+            <span class="activity-text">No recent activity</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions Section -->
+    <div class="section">
+      <h3>Quick Actions</h3>
+      <div class="actions-grid">
+        <button id="openATS" class="btn btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="15,3 21,3 21,9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Open ATS
+        </button>
+        <button id="testConnection" class="btn btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="22,4 12,14.01 9,11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Test Connection
+        </button>
+      </div>
+    </div>
+
+    <!-- Help Section -->
+    <div class="section">
+      <div class="help-links">
+        <a href="#" id="helpLink" class="help-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Help & Documentation
+        </a>
+        <a href="#" id="supportLink" class="help-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Contact Support
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <span>v1.0.0</span>
+      <span>•</span>
+      <span>Emineon ATS</span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html> 

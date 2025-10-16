@@ -1,0 +1,68 @@
+ALEX THOMPSON
+Data Scientist
+
+Email: alex.thompson@email.com
+Phone: +1 (555) 321-9876
+Location: Boston, MA
+
+PROFESSIONAL SUMMARY
+Experienced Data Scientist with 5+ years of expertise in machine learning, statistical analysis, and data visualization. Proven track record of developing predictive models that drive business decisions and improve operational efficiency.
+
+TECHNICAL SKILLS
+Programming Languages: Python, R, SQL, Scala
+Machine Learning: Scikit-learn, TensorFlow, PyTorch, Keras
+Data Visualization: Matplotlib, Seaborn, Plotly, Tableau
+Big Data: Spark, Hadoop, Hive, Kafka
+Databases: PostgreSQL, MongoDB, Cassandra
+Cloud Platforms: AWS, GCP, Azure
+
+PROFESSIONAL EXPERIENCE
+
+Senior Data Scientist | DataTech Corp | 2021-01 - Present
+• Developed machine learning models for customer churn prediction, reducing churn rate by 15%
+• Built recommendation systems serving 1M+ users daily
+• Led data science team of 4 members on multiple projects
+• Implemented A/B testing framework for product optimization
+
+Data Scientist | Analytics Solutions Inc | 2019-03 - 2020-12
+• Created predictive models for demand forecasting with 92% accuracy
+• Developed automated data pipelines processing 10TB+ daily
+• Collaborated with product teams to implement data-driven features
+• Presented findings to C-level executives and stakeholders
+
+Junior Data Analyst | StartupData LLC | 2018-01 - 2019-02
+• Performed statistical analysis on customer behavior data
+• Created dashboards and reports for business stakeholders
+• Cleaned and preprocessed large datasets for analysis
+• Assisted in developing KPI tracking systems
+
+EDUCATION
+Master of Science in Data Science
+Massachusetts Institute of Technology | 2016-2018
+GPA: 3.9/4.0
+
+Bachelor of Science in Mathematics
+Boston University | 2012-2016
+Magna Cum Laude, GPA: 3.8/4.0
+
+CERTIFICATIONS
+• AWS Certified Machine Learning - Specialty (2022)
+• Google Cloud Professional Data Engineer (2021)
+• Certified Analytics Professional (CAP) (2020)
+• TensorFlow Developer Certificate (2020)
+
+PROJECTS
+Customer Segmentation Analysis (2022)
+• Developed unsupervised learning model to segment customers into 8 distinct groups
+• Improved marketing campaign effectiveness by 35%
+• Technologies: Python, K-means, PCA, Tableau
+
+Fraud Detection System (2021)
+• Built real-time fraud detection system using ensemble methods
+• Reduced false positives by 40% while maintaining 99.5% accuracy
+• Technologies: Python, XGBoost, Apache Kafka, PostgreSQL
+
+LANGUAGES
+• English (Native)
+• Spanish (Intermediate)
+• French (Basic)
